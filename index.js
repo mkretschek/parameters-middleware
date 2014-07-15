@@ -34,20 +34,20 @@
     return function (req, res, next) {
       var key;
       var missing;
-      var message;
+      var message = options.message;
+      // Default to status 400 Bad Request
+      var statusCode = options.statusCode || 400;
 
       for (key in params) {
         if (params.hasOwnProperty(key)) {
           missing = getUndefinedParams(req[key], params[key]);
 
           if (missing) {
-            message = options.message;
-
             if (typeof message === 'function') {
               message = message(missing);
             }
 
-            res.send(400, message);
+            res.send(statusCode, message);
             return;
           }
         }

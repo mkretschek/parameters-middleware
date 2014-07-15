@@ -138,6 +138,22 @@
         });
 
 
+      it('allows to set the status code', function () {
+        var params = {
+          query : 'q'
+        };
+
+        var options = {
+          statusCode : 404
+        };
+
+        var middleware = parameters(params, options);
+
+        middleware(req, res, next);
+        expect(res.send).to.have.been.calledWith(404);
+      });
+
+
       it('uses the configured message', function () {
         var params = {
           query : ['missing']
