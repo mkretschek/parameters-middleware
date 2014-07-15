@@ -190,6 +190,21 @@
       });
 
 
+      it('ignores falsy params', function () {
+        var params = {
+          query : null,
+          body : false,
+          header : undefined,
+          arbitrary : 0
+        };
+
+        var middleware = parameters(params);
+
+        middleware(req, res, next);
+        expect(next).to.have.been.called;
+      });
+
+
       it('respects the property in which each param should be found',
         function () {
           var params = {
