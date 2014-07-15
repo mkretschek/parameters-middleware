@@ -46,13 +46,14 @@
       before(function () {
         req = {
           query : {
-            foo : 'foobar'
-          },
-          body : {
+            foo : 'foobar',
             bar : 'barbaz'
           },
-          custom : {
+          body : {
             baz : 'bazfoo'
+          },
+          arbitrary : {
+            woo : 'hoo'
           }
         };
 
@@ -72,13 +73,33 @@
 
       it('calls the next middleware if all parameters are set', function () {
         var middleware = parameters({
-          query : ['foo'],
-          body : ['bar'],
-          custom : ['baz']
+          query : ['foo', 'bar'],
+          body : ['baz']
         });
 
         middleware(req, res, next);
 
+        expect(next).to.have.been.calledOnce;
+      });
+
+
+      it('works with single params passed as strings', function () {
+        var middleware = parameters({
+          query : 'foo',
+          body : 'baz'
+        });
+
+        middleware(req, res, next);
+        expect(next).to.have.been.calledOnce;
+      });
+
+
+      it('works with multiple params passed as an array', function () {
+        var middleware = parameters({
+          query : ['foo', 'bar']
+        });
+
+        middleware(req, res, next);
         expect(next).to.have.been.calledOnce;
       });
 
@@ -99,6 +120,17 @@
         function () {
           var middleware = parameters({
             query : ['missing']
+          });
+
+          middleware(req, res, next);
+          expect(res.send).to.have.been.calledWith(400);
+        });
+
+
+      it('responds with a status 400 if the property is not set in the request',
+        function () {
+          var middleware = parameters({
+            inexistent : 'param'
           });
 
           middleware(req, res, next);
@@ -147,8 +179,8 @@
 
       it('checks arbitrary properties in the request', function () {
         var params = {
-          // Usually, there's no 'custom' property in the request object
-          custom : ['baz']
+          // Usually, there's no 'arbitrary' property in the request object
+          arbitrary : ['woo']
         };
 
         var middleware = parameters(params);
