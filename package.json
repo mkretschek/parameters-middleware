@@ -1,0 +1,40 @@
+{
+  "name": "parameters-middleware",
+  "version": "0.0.1",
+  "description": "Express.js middleware that checks if the given parameters are set in the request.",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkretschek/parameters-middleware"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "parameters",
+    "request"
+  ],
+  "author": "Mathias Kretschek <mathias@kretschek.com.br> (http://mathias.ms/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mkretschek/parameters-middleware/issues"
+  },
+  "homepage": "https://github.com/mkretschek/parameters-middleware",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "codeclimate-test-reporter": "0.0.3",
+    "coveralls": "^2.11.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.11.0",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.20.1",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0"
+  },
+  "dependencies": {
+    "underscore": "^1.6.0"
+  }
+}
