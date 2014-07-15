@@ -1,6 +1,6 @@
 {
   "name": "parameters-middleware",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Express.js middleware that checks if the given parameters are set in the request.",
   "main": "index.js",
   "scripts": {
