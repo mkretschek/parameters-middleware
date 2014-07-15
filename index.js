@@ -4,12 +4,16 @@
   var _ = require('underscore');
 
   function getUndefinedParams(target, params) {
-    if (!target || !params) {
+    if (!params) {
       return null;
     }
 
     if (!Array.isArray(params)) {
       params = [params];
+    }
+
+    if (!target) {
+      return params;
     }
 
     var missing = _.filter(params, function (param) {
