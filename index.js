@@ -47,7 +47,7 @@
               message = message(missing);
             }
 
-            res.send(statusCode, message);
+            res.status(statusCode).send(message);
             return;
           }
         }
